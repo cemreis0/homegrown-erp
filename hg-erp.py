@@ -1,8 +1,15 @@
 import tkinter
 from tkinter import *
+import webbrowser
 
-db_name = "db.txt"
+db_name = "db.csv"
 column = len(open(db_name).readlines())
+
+root = Tk()
+root.geometry("1100x500")
+
+app_name = Label(root, text="app_name")
+app_name.grid(row=0, column=0)
 
 def readdb(db_name, index, line):
     db = open(db_name)
@@ -14,18 +21,18 @@ def readdb(db_name, index, line):
     db.close()
     return db_spec_item
 
-root = Tk()
-root.geometry("1100x500")
-
-app_name = Label(root, text="app_name")
-app_name.grid(row=0, column=0)
+def open_url():
+    webbrowser.open_new(readdb(db_name,j,i))
 
 for i in range(0,column):
-    for j in range(0,9):
-        print(readdb(db_name,j,i))
-        entry = Entry(root, width=25)
-        entry.insert("0", readdb(db_name,j,i))
-        entry.config(state=DISABLED)
-        entry.grid(row=i, column=j, padx=5, pady=10)
+    for j in range(0,7):
+        if j == 6:
+            url_button = Button(root, text=readdb(db_name, j, i), command=open_url)
+            url_button.grid(row=i+1,column=j,padx=10,pady=10)
+        else:
+            entry = Entry(root, width=25)
+            entry.insert("0", readdb(db_name,j,i))
+            entry.config(state=DISABLED)
+            entry.grid(row=i+1, column=j, padx=10, pady=10)
 
 tkinter.mainloop()
