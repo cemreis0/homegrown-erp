@@ -70,11 +70,12 @@ def main():
         for j in range(0, 7):
             if j == 6:
                 # hyperlink button
-                url_button = Button(root, text=getitem(db_file, j, i), command=open_url, fg="blue", bg="white")
+                url_button = Button(root, text=getitem(db_file, j, i), command=open_url, fg="blue", borderwidth=0)
+                url_button.config(relief=SUNKEN)
                 url_button.grid(row=i+2, column=j, padx=10, pady=10)
             else:
                 # entry boxes
-                entry = Entry(root, width=25)
+                entry = Entry(root, width=30)
                 entry.insert("0", getitem(db_file, j, i))
                 entry.config(state=DISABLED)
                 entry.grid(row=i+2, column=j, padx=10, pady=10)
