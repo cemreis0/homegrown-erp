@@ -42,7 +42,7 @@ def getcolumnnames():
     url.grid(row=1, column=6, padx=5, pady=5)
 
 
-# get a single comma separated value in the .csv file
+# get a single comma separated value from the .csv file
 def getitem(db_name, index, line):
     db = opendb(db_name)
     db_line = db.readlines()
